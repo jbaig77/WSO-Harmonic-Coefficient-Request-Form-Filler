@@ -1,5 +1,6 @@
 from tkinter import*
 from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
 
 fields = 'Name', 'Address', 'Carrington Rotation', 'Center Longitude', 'Date', 'Order (<30)'
 
@@ -69,4 +70,14 @@ if __name__ == '__main__':
     submit_button = browser.find_element_by_xpath('//input[@type="submit"]')
     submit_button.click()
 
+    output = browser.find_element_by_css_selector('body')
+    output.send_keys(Keys.CONTROL+'a')
+    output.send_keys(Keys.CONTROL+'c')
+    results = output.text
+
+    text_file = open("Output.txt", "w")
+    text_file.write(results)
+    text_file.close()
+
+    browser.close()
 
