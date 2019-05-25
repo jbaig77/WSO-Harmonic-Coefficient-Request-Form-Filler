@@ -81,3 +81,13 @@ if __name__ == '__main__':
 
     browser.close()
 
+    with open("Output.txt", "r") as f:
+        text = f.read()
+
+    lines = text[text.find("h(uT)") + 5:].strip().split("\n")
+
+    with open("new_output.csv", "w+") as f:
+        for line in lines:
+            l, m, g, h = line.split()
+            f.write("{},{},{},{}\n".format(l, m, g, h))
+
